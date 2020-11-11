@@ -8,16 +8,29 @@
 <body>
 
     <h1>GPA Calculator</h1>
-    <!-- <label for="numCourses">Number Of Courses</label>
-    <input type="text" name="numCourses" placeholder="Enter Number Of Courses Here" oninput="numOfCourses()">
+    <label for="numCourses">Number Of Courses</label>
+    <div><input id="numCourses" type="text" name="numCourses" placeholder="Enter Number Of Courses Here" oninput="numOfCourses()"></div>
+
+    <div id='fields'>
+    </div>
 
 
     <script>
         function numOfCourses() {
-            var numOfCourses = document.getElementsByName('numCourses');
-            console.log(numOfCourses.values);
+            var numOfCourses = document.querySelector('#numCourses');
+            console.log(numOfCourses.value);
+            addInputFields(numOfCourses.value);
         }
-    </script> -->
+
+        function addInputFields(numOfCourses) {
+            var inputFields = document.querySelector("#fields");
+            for(let i=0; i<numOfCourses; i++){
+                let input = document.createElement('input');
+                inputFields.appendChild(input);
+            }
+        }
+
+    </script>
     
 </body>
 </html>
