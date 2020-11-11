@@ -23,7 +23,6 @@
                 console.log('empty');
                 let fieldstoRemove = document.querySelector('#fields');
                 fieldstoRemove.innerHTML = '';
-
             } 
 
             console.log(numOfCourses.value);
@@ -32,8 +31,11 @@
 
         function addInputFields(numOfCourses) {
             var inputFields = document.querySelector("#fields");
+            
+
             for(let i=0; i<numOfCourses; i++){
-                let courseNumber = i; 
+                let courseNumber = i+1;
+                let br = document.createElement('br');
                 
                 let label1 = document.createElement('label');
                 label1.setAttribute('for', 'creditHours');
@@ -42,23 +44,26 @@
                 let input1 = document.createElement('input');
                 input1.setAttribute('type', 'number');
                 input1.setAttribute('name', 'creditHours');
-                input1.setAttribute('step', '1');
-                input1.setAttribute('placeholder', 'Course ' + ++courseNumber + ' credit hours');
+                // input1.setAttribute('step', '1');
+                input1.setAttribute('placeholder', 'Course ' + courseNumber + ' credit hours');
 
                 let label2 = document.createElement('label');
-                label2.setAttribute('for', 'creditHours');
+                label2.setAttribute('for', 'gpa');
                 label2.textContent = 'GPA';
 
                 let input2 = document.createElement('input');
                 input2.setAttribute('type', 'text');
-                input2.setAttribute('name', 'creditHours');
-                input2.setAttribute('placeholder', 'Course ' + ++courseNumber + ' credit hours');
-
-
-
+                input2.setAttribute('name', 'gpa');
+                input2.setAttribute('placeholder', 'Course ' + courseNumber + ' GPA');
 
                 inputFields.appendChild(label1);
                 inputFields.appendChild(input1);
+
+                inputFields.appendChild(label2);
+                inputFields.appendChild(input2);
+
+                inputFields.appendChild(br);
+
             }
         }
 
