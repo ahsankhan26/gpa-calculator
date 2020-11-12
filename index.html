@@ -7,16 +7,83 @@
 </head>
 <body>
 
+    <style>
+        body {
+            margin: 5%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4em;
+            
+        }
+
+        label {
+            font-weight: 700;
+        }
+        
+        #lblNumCourses {
+            font-size: 1.5em;
+            font-weight: 500;
+            margin-bottom: 1%;
+        }
+
+        #numCourses {
+            width: 50%;            
+        }
+
+        input {
+            padding:8px;
+            border:none;
+            border-bottom:1px solid #ccc;
+            margin-bottom: 2%;
+        }
+
+        #creditHours {
+            width: 30%;
+        }
+
+        #grade {
+            width: 5%;
+        }
+
+        #button {
+            margin-top: 1%;
+            border:none;
+            display:inline-block;
+            padding:8px 16px;
+            vertical-align:middle;
+            overflow:hidden;
+            text-decoration:none;
+            color:#fff;
+            background-color:#26a69a;
+            text-align:center;
+            cursor:pointer;
+            white-space:nowrap;
+        }
+
+        #button:hover {
+            background-color:#138496!important
+        }
+
+    </style>
+
     <h1>GPA Calculator</h1>
-    <label for="numCourses">Number Of Courses</label>
-    <div><input id="numCourses" type="text" name="numCourses" placeholder="Enter Number Of Courses Here" oninput="numOfCourses()"></div>
+
+    <div id="numOfCourses">
+        <label id="lblNumCourses" for="numCourses">Number Of Courses</label>
+        <div>
+            <input id="numCourses" type="text" name="numCourses" placeholder="  Enter Number of Courses" oninput="numOfCourses()">
+        </div>
+    </div>
+    
 
     <div id='fields'>
     </div>
 
-    <div><input type="submit" onclick="calculateGPA()"></div>
+    <div><input id="button" type="submit" onclick="calculateGPA()"></div>
 
-    <div><h4>GPA: </h4></div>
+    <div><h2>GPA: </h2></div>
 
     <script>
         function numOfCourses() {
@@ -42,18 +109,18 @@
                 
                 let label1 = document.createElement('label');
                 label1.setAttribute('for', 'creditHours');
-                label1.textContent = 'Credit Hours';
+                label1.textContent = 'Credit Hours: ';
 
                 let input1 = document.createElement('input');
                 input1.setAttribute('type', 'number');
                 input1.setAttribute('name', 'creditHours');
                 input1.setAttribute('id', 'creditHours');
                 input1.setAttribute('min', '0');
-                input1.setAttribute('placeholder', 'Course ' + courseNumber + ' credit hours');
+                input1.setAttribute('placeholder', 'Course ' + courseNumber + ' Credit Hours');
 
                 let label2 = document.createElement('label');
                 label2.setAttribute('for', 'grade');
-                label2.textContent = 'Grade';
+                label2.textContent = 'Grade:    ';
 
                 let input2 = document.createElement('select');
                 input2.setAttribute('name', 'grade');
@@ -76,7 +143,7 @@
         function calculateGPA() {
             let grades = document.querySelectorAll('#grade');
             let creditHours = document.querySelectorAll('#creditHours');
-            let GPA = document.querySelector("h4");
+            let GPA = document.querySelector("h2");
 
             let totalEarnedPoints = 0;
             let totalCreditHours = 0;
@@ -86,6 +153,8 @@
                 totalEarnedPoints += parseFloat(grades[i].value) * creditHours[i].value;
                 totalCreditHours += parseInt(creditHours[i].value);
             }
+
+
 
             GPA.innerHTML = "GPA: " + (totalEarnedPoints / totalCreditHours).toFixed(3);
             
