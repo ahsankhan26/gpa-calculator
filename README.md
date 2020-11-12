@@ -1,5 +1,5 @@
 # gpa-calculator
 calculates your GPA
 
-<h3>Preview Here</h3>
+<a href="https://ahsankhan.me/gpa-calculator">ahsankhan.me/gpa-calculator</a>
 
