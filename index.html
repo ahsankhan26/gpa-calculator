@@ -10,20 +10,13 @@
     <h1>GPA Calculator</h1>
     <label for="numCourses">Number Of Courses</label>
     <div><input id="numCourses" type="text" name="numCourses" placeholder="Enter Number Of Courses Here" oninput="numOfCourses()"></div>
-    <!-- <div>
-        <select name="grade" id="grade" onchange="console.log(grade.value)">
-            <option value="-">-</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="A">A</option>
-            <option value="B+">B+</option>
-            <option value="B-">B</option>
-        </select>
-    </div> -->
 
     <div id='fields'>
     </div>
 
+    <div><input type="submit" onclick="calculateGPA()"></div>
+
+    <div><h4>GPA: </h4></div>
 
     <script>
         function numOfCourses() {
@@ -54,6 +47,7 @@
                 let input1 = document.createElement('input');
                 input1.setAttribute('type', 'number');
                 input1.setAttribute('name', 'creditHours');
+                input1.setAttribute('id', 'creditHours');
                 input1.setAttribute('min', '0');
                 input1.setAttribute('placeholder', 'Course ' + courseNumber + ' credit hours');
 
@@ -65,7 +59,7 @@
                 input2.setAttribute('name', 'grade');
                 input2.setAttribute('id', 'grade');
 
-                input2.innerHTML = '<option value="-">-</option><option value="A+">A+</option><option value="A">A</option><option value="A-">A-</option><option value="B+">B+</option><option value="B">B</option><option value="B-">B-</option><option value="C+">C+</option><option value="C">C</option><option value="C-">C-</option><option value="D+">D+</option><option value="D">D</option><option value="F">F</option>'
+                input2.innerHTML = '<option value="-">-</option><option value="4">A+</option><option value="4">A</option><option value="3.7">A-</option><option value="3.4">B+</option><option value="3">B</option><option value="2.7">B-</option><option value="2.4">C+</option><option value="2">C</option><option value="1.7">C-</option><option value="1.4">D+</option><option value="1">D</option><option value="0">F</option>'
 
                 inputFields.appendChild(label1);
                 inputFields.appendChild(input1);
@@ -75,7 +69,29 @@
 
                 inputFields.appendChild(br);
 
+            }            
+
+        }
+
+        function calculateGPA() {
+            let grades = document.querySelectorAll('#grade');
+            let creditHours = document.querySelectorAll('#creditHours');
+            let GPA = document.querySelector("h4");
+
+            let totalEarnedPoints = 0;
+            let totalCreditHours = 0;
+
+
+            for(let i=0; i<grades.length; i++){
+                totalEarnedPoints += parseFloat(grades[i].value) * creditHours[i].value;
+                totalCreditHours += parseInt(creditHours[i].value);
             }
+
+            GPA.innerHTML = "GPA: " + (totalEarnedPoints / totalCreditHours).toFixed(3);
+            
+            console.log('total Credit Hours: ' + totalCreditHours);
+            console.log('total Earned Points: ' + totalEarnedPoints);
+            
         }
 
     </script>
